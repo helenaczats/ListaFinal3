@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.2 on darwin)" generated="2024-07-23T19:25:30.441635" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Book" source="/Users/helena_czekster/Desktop/QA/Iterasys/ListaFinal3/__tests__/api/test_book.robot">
+<kw name="Run Requirements" owner="common" type="SETUP">
+<kw name="Create User" owner="common">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:30.617516" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=${content_type}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:30.617045" elapsed="0.006328"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:30.624441" level="INFO">${body} = {'userName': 'User6', 'password': '@Password123'}</msg>
+<var>${body}</var>
+<arg>userName=${userName}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:30.623819" elapsed="0.001398"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-23T19:25:31.142793" level="INFO">POST Request : url=https://bookstore.toolsqa.com/Account/v1/User 
+ path_url=/Account/v1/User 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '49'} 
+ body=b'{"userName": "User6", "password": "@Password123"}' 
+ </msg>
+<msg time="2024-07-23T19:25:31.143159" level="INFO">POST Response : url=https://bookstore.toolsqa.com/Account/v1/User 
+ status=201, reason=Created 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 23 Jul 2024 17:25:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '79', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"4f-aYeToybkmkE6DlZHT6ZSfEEJwEQ"'} 
+ body={"userID":"922c74a1-2b9a-4a62-9713-edaa7bee77b4","username":"User6","books":[]} 
+ </msg>
+<msg time="2024-07-23T19:25:31.143606" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}/Account/v1/User</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-23T19:25:30.625701" elapsed="0.518210"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>201</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.144338" elapsed="0.000722"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.145997" level="INFO">${userId} = 922c74a1-2b9a-4a62-9713-edaa7bee77b4</msg>
+<var>${userId}</var>
+<arg>${response.json()}[userID]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.145312" elapsed="0.000936"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.147459" level="INFO">${userId} = 922c74a1-2b9a-4a62-9713-edaa7bee77b4</msg>
+<arg>${userId}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.146929" elapsed="0.000721"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${userId}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.148269" elapsed="0.000581"/>
+</kw>
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2024-07-23T19:25:30.616196" elapsed="0.533231"/>
+</kw>
+<kw name="Create Bearer" owner="common">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.157038" level="INFO">${body} = {'userName': 'User6', 'password': '@Password123'}</msg>
+<var>${body}</var>
+<arg>userName=${userName}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.156385" elapsed="0.000822"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-23T19:25:31.791260" level="INFO">POST Request : url=https://bookstore.toolsqa.com/Account/v1/GenerateToken 
+ path_url=/Account/v1/GenerateToken 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '49', 'Content-Type': 'application/json'} 
+ body=b'{"userName": "User6", "password": "@Password123"}' 
+ </msg>
+<msg time="2024-07-23T19:25:31.796754" level="INFO">POST Response : url=https://bookstore.toolsqa.com/Account/v1/GenerateToken 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 23 Jul 2024 17:25:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '274', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"112-BG0My2IhLqSNbNWfSm50G5TpwmY"'} 
+ body={"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlVzZXI2IiwicGFzc3dvcmQiOiJAUGFzc3dvcmQxMjMiLCJpYXQiOjE3MjE3NTU1MzF9.U5ZDxZR7tL7OiEHrC3UVxtQ4gDWGyjos7rrQmuE5nco","expires":"2024-07-30T17:25:31.283Z","status":"Success","result":"User authorized successfully."} 
+ </msg>
+<msg time="2024-07-23T19:25:31.797554" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}/Account/v1/GenerateToken</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.157682" elapsed="0.640049"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.798010" elapsed="0.000484"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.799614" level="INFO">${bearer} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlVzZXI2IiwicGFzc3dvcmQiOiJAUGFzc3dvcmQxMjMiLCJpYXQiOjE3MjE3NTU1MzF9.U5ZDxZR7tL7OiEHrC3UVxtQ4gDWGyjos7rrQmuE5nco</msg>
+<var>${bearer}</var>
+<arg>${response.json()}[token]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.798904" elapsed="0.000872"/>
+</kw>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.800278" level="INFO">${bearer} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlVzZXI2IiwicGFzc3dvcmQiOiJAUGFzc3dvcmQxMjMiLCJpYXQiOjE3MjE3NTU1MzF9.U5ZDxZR7tL7OiEHrC3UVxtQ4gDWGyjos7rrQmuE5nco</msg>
+<arg>${bearer}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.799993" elapsed="0.000421"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${bearer}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.800589" elapsed="0.000346"/>
+</kw>
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2024-07-23T19:25:31.149958" elapsed="0.651259"/>
+</kw>
+<kw name="Create Authorized" owner="common">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:31.803829" level="INFO">${body} = {'userName': 'User6', 'password': '@Password123'}</msg>
+<var>${body}</var>
+<arg>userName=${userName}</arg>
+<arg>password=${password}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.803152" elapsed="0.000830"/>
+</kw>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-07-23T19:25:32.335845" level="INFO">POST Request : url=https://bookstore.toolsqa.com/Account/v1/Authorized 
+ path_url=/Account/v1/Authorized 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '49', 'Content-Type': 'application/json'} 
+ body=b'{"userName": "User6", "password": "@Password123"}' 
+ </msg>
+<msg time="2024-07-23T19:25:32.336367" level="INFO">POST Response : url=https://bookstore.toolsqa.com/Account/v1/Authorized 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 23 Jul 2024 17:25:32 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '4', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"4-X/5TO4MPCKAyY0ipFgr6/IraRNs"'} 
+ body=true 
+ </msg>
+<msg time="2024-07-23T19:25:32.337700" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}/Account/v1/Authorized</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-07-23T19:25:31.804185" elapsed="0.533875"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:32.348666" level="INFO">${response_body} = True</msg>
+<var>${response_body}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.338754" elapsed="0.010837"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response_body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.350036" elapsed="0.001091"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.351443" elapsed="0.000342"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>${{bool(True)}}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.352010" elapsed="0.001739"/>
+</kw>
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2024-07-23T19:25:31.801571" elapsed="0.554181"/>
+</kw>
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2024-07-23T19:25:30.615643" elapsed="1.740447"/>
+</kw>
+<test id="s1-t1" name="Get Book" line="29">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:32.442779" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=${content_type}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.442329" elapsed="0.000783"/>
+</kw>
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2024-07-23T19:25:32.747044" level="INFO">GET Request : url=https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862 
+ path_url=/BookStore/v1/Book?ISBN=9781449325862 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-07-23T19:25:32.747300" level="INFO">GET Response : url=https://bookstore.toolsqa.com/BookStore/v1/Book?ISBN=9781449325862 
+ status=200, reason=OK 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 23 Jul 2024 17:25:32 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '549', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"225-6wegpsdSbs3Zjpo/5fzJQey1dRQ"'} 
+ body={"isbn":"9781449325862","title":"Git Pocket Guide","subTitle":"A Working Introduction","author":"Richard E. Silverman","publish_date":"2020-06-04T08:48:39.000Z","publisher":"O'Reilly Media","pages":234,"description":"This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp","website":"http://chimera.labs.oreilly.com/books/1230000000561/index.html"} 
+ </msg>
+<msg time="2024-07-23T19:25:32.747727" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}/BookStore/v1/Book?ISBN=${isbn}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.443383" elapsed="0.304453"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-07-23T19:25:32.749775" level="INFO">${response_body} = {'isbn': '9781449325862', 'title': 'Git Pocket Guide', 'subTitle': 'A Working Introduction', 'author': 'Richard E. Silverman', 'publish_date': '2020-06-04T08:48:39.000Z', 'publisher': "O'Reilly Media"...</msg>
+<var>${response_body}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.748346" elapsed="0.001615"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response_body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.750313" elapsed="0.000300"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>200</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.751064" elapsed="0.000382"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[isbn]</arg>
+<arg>9781449325862</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.752426" elapsed="0.000982"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[title]</arg>
+<arg>Git Pocket Guide</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.755337" elapsed="0.000868"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[subTitle]</arg>
+<arg>A Working Introduction</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.758627" elapsed="0.000588"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[author]</arg>
+<arg>Richard E. Silverman</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.775382" elapsed="0.001533"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[publisher]</arg>
+<arg>O'Reilly Media</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.778435" elapsed="0.005518"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[pages]</arg>
+<arg>${{int(234)}}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.785000" elapsed="0.001261"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[description]</arg>
+<arg>This pocket guide is the perfect on-the-job companion to Git, the distributed version control system. It provides a compact, readable introduction to Git for new users, as well as a reference to common commands and procedures for those of you with Git exp</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.786682" elapsed="0.000346"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${response_body}[website]</arg>
+<arg>http://chimera.labs.oreilly.com/books/1230000000561/index.html</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.787286" elapsed="0.000287"/>
+</kw>
+<status status="PASS" start="2024-07-23T19:25:32.441399" elapsed="0.346423"/>
+</test>
+<kw name="Delete User" owner="common" type="TEARDOWN">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:32.809632" level="INFO">${headers} = {'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlVzZXI2IiwicGFzc3dvcmQiOiJAUGFzc3dvcmQxMjMiLCJpYXQiOjE3MjE3NTU1MzF9.U5ZDxZR7tL7OiEHr...</msg>
+<var>${headers}</var>
+<arg>Content-Type=${content_type}</arg>
+<arg>Authorization=Bearer ${bearer}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.807453" elapsed="0.002392"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-07-23T19:25:32.813991" level="INFO">${body} = {'userId': '922c74a1-2b9a-4a62-9713-edaa7bee77b4'}</msg>
+<var>${body}</var>
+<arg>userId=${userId}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.810139" elapsed="0.004073"/>
+</kw>
+<kw name="DELETE" owner="RequestsLibrary">
+<msg time="2024-07-23T19:25:33.240843" level="INFO">DELETE Request : url=https://bookstore.toolsqa.com/Account/v1/User/922c74a1-2b9a-4a62-9713-edaa7bee77b4 
+ path_url=/Account/v1/User/922c74a1-2b9a-4a62-9713-edaa7bee77b4 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlVzZXI2IiwicGFzc3dvcmQiOiJAUGFzc3dvcmQxMjMiLCJpYXQiOjE3MjE3NTU1MzF9.U5ZDxZR7tL7OiEHrC3UVxtQ4gDWGyjos7rrQmuE5nco', 'Content-Length': '50'} 
+ body=b'{"userId": "922c74a1-2b9a-4a62-9713-edaa7bee77b4"}' 
+ </msg>
+<msg time="2024-07-23T19:25:33.241149" level="INFO">DELETE Response : url=https://bookstore.toolsqa.com/Account/v1/User/922c74a1-2b9a-4a62-9713-edaa7bee77b4 
+ status=204, reason=No Content 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 23 Jul 2024 17:25:33 GMT', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"58-nawIjjM6vYTrI/8hd3N9WKpBy3o"'} 
+ body=None 
+ </msg>
+<msg time="2024-07-23T19:25:33.241641" level="INFO">${response} = &lt;Response [204]&gt;</msg>
+<var>${response}</var>
+<arg>url=${url}/Account/v1/User/${userId}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a DELETE request.</doc>
+<status status="PASS" start="2024-07-23T19:25:32.815088" elapsed="0.426720"/>
+</kw>
+<kw name="Status Should Be" owner="RequestsLibrary">
+<arg>204</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" start="2024-07-23T19:25:33.242093" elapsed="0.000287"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-07-23T19:25:33.242594" elapsed="0.000581"/>
+</kw>
+<arg>${url}</arg>
+<arg>${userName}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2024-07-23T19:25:32.791759" elapsed="0.451682"/>
+</kw>
+<status status="PASS" start="2024-07-23T19:25:30.448667" elapsed="2.794925"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test Book">Test Book</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

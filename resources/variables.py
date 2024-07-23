@@ -1,0 +1,5 @@
+url = 'https://bookstore.toolsqa.com'
+content_type = 'application/json'
+userName = 'User6'
+password = '@Password123'
+isbn = '9781449325862'   
